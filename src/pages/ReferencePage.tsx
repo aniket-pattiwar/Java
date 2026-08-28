@@ -1,8 +1,11 @@
 import React from 'react';
-import { FileText, Printer } from 'lucide-react';
+import { FileText, Printer, Download } from 'lucide-react';
 
+interface ReferencePageProps {
+  setCurrentView?: (view: string) => void;
+}
 
-export const ReferencePage: React.FC = () => {
+export const ReferencePage: React.FC<ReferencePageProps> = ({ setCurrentView }) => {
   const handlePrint = () => {
     window.print();
   };
@@ -24,13 +27,36 @@ export const ReferencePage: React.FC = () => {
           </p>
         </div>
 
-        <button
-          onClick={handlePrint}
-          className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors no-print"
-        >
-          <Printer className="w-4 h-4" />
-          <span>Print / Save PDF</span>
-        </button>
+        <div className="flex flex-wrap items-center gap-2.5 no-print">
+          {setCurrentView && (
+            <>
+              <button
+                onClick={() => setCurrentView('install-guide')}
+                className="px-3.5 py-2 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>JDK 17 (PDF)</span>
+              </button>
+              <button
+                onClick={() => setCurrentView('intellij-guide')}
+                className="px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              >
+                <div className="w-3.5 h-3.5 rounded bg-indigo-600 text-white flex items-center justify-center font-bold text-[8px]">
+                  IJ
+                </div>
+                <span>IntelliJ Guide (PDF)</span>
+              </button>
+            </>
+          )}
+
+          <button
+            onClick={handlePrint}
+            className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+          >
+            <Printer className="w-4 h-4" />
+            <span>Print / Save PDF</span>
+          </button>
+        </div>
       </div>
 
       {/* Grid of 8 Fast-Scan Sections */}

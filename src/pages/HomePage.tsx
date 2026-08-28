@@ -5,6 +5,7 @@ import {
   Sparkles,
   FileText,
   Clock,
+  Download,
 } from 'lucide-react';
 import { allModules } from '../data';
 
@@ -113,26 +114,44 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentView, setSelectedM
         <div className="flex flex-wrap items-center gap-3 pt-2">
           <button
             onClick={handleStartDay1}
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-sm hover:shadow-md"
+            className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold flex items-center gap-2 transition-all shadow-sm hover:shadow-md cursor-pointer"
           >
             <span>Start Day 1</span>
             <ArrowRight className="w-4 h-4" />
           </button>
 
           <button
+            onClick={() => setCurrentView('install-guide')}
+            className="px-4 py-3 bg-blue-50 hover:bg-blue-100 text-blue-800 rounded-xl text-sm font-bold flex items-center gap-2 transition-colors border border-blue-200 cursor-pointer"
+          >
+            <Download className="w-4 h-4 text-blue-600" />
+            <span>Install Java 17 (PDF)</span>
+          </button>
+
+          <button
+            onClick={() => setCurrentView('intellij-guide')}
+            className="px-4 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-800 rounded-xl text-sm font-bold flex items-center gap-2 transition-colors border border-indigo-200 cursor-pointer"
+          >
+            <div className="w-4 h-4 rounded bg-indigo-600 text-white flex items-center justify-center font-bold text-[9px]">
+              IJ
+            </div>
+            <span>IntelliJ Guide (PDF)</span>
+          </button>
+
+          <button
             onClick={() => setCurrentView('schedule')}
-            className="px-5 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors border border-slate-200"
+            className="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors border border-slate-200 cursor-pointer"
           >
             <Calendar className="w-4 h-4 text-blue-600" />
-            <span>Course Roadmap (5-Day Plan)</span>
+            <span>5-Day Plan</span>
           </button>
 
           <button
             onClick={() => setCurrentView('reference')}
-            className="px-5 py-3 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors border border-slate-200"
+            className="px-4 py-3 bg-white hover:bg-slate-50 text-slate-700 rounded-xl text-sm font-semibold flex items-center gap-2 transition-colors border border-slate-200 cursor-pointer"
           >
             <FileText className="w-4 h-4 text-amber-600" />
-            <span>Quick Reference Cheat Sheet</span>
+            <span>Quick Reference</span>
           </button>
         </div>
       </section>

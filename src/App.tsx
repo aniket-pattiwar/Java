@@ -9,6 +9,8 @@ import { ModulePage } from './pages/ModulePage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { ReferencePage } from './pages/ReferencePage';
 import { ChallengesPage } from './pages/ChallengesPage';
+import { InstallGuidePage } from './pages/InstallGuidePage';
+import { IntelliJGuidePage } from './pages/IntelliJGuidePage';
 import { totalConceptsCount } from './data';
 
 export const App: React.FC = () => {
@@ -58,9 +60,13 @@ export const App: React.FC = () => {
       case 'playground':
         return <PlaygroundPage />;
       case 'reference':
-        return <ReferencePage />;
+        return <ReferencePage setCurrentView={setCurrentView} />;
       case 'challenges':
         return <ChallengesPage />;
+      case 'install-guide':
+        return <InstallGuidePage setCurrentView={setCurrentView} />;
+      case 'intellij-guide':
+        return <IntelliJGuidePage setCurrentView={setCurrentView} />;
       default:
         return (
           <HomePage

@@ -7,6 +7,7 @@ interface IntelliJModalProps {
   onClose: () => void;
   codeToCopy: string;
   title?: string;
+  onOpenIntelliJGuide?: () => void;
 }
 
 export const IntelliJModal: React.FC<IntelliJModalProps> = ({
@@ -14,6 +15,7 @@ export const IntelliJModal: React.FC<IntelliJModalProps> = ({
   onClose,
   codeToCopy,
   title = 'Run in IntelliJ IDEA',
+  onOpenIntelliJGuide,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -114,10 +116,21 @@ export const IntelliJModal: React.FC<IntelliJModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="bg-slate-50 border-t border-slate-100 p-3 flex justify-end">
+        <div className="bg-slate-50 border-t border-slate-100 p-3 flex items-center justify-between gap-2">
+          {onOpenIntelliJGuide ? (
+            <button
+              onClick={() => {
+                onClose();
+                onOpenIntelliJGuide();
+              }}
+              className="text-xs font-bold text-indigo-700 hover:text-indigo-900 flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>Need IntelliJ Setup Guide (PDF)?</span>
+            </button>
+          ) : <div />}
           <button
             onClick={onClose}
-            className="px-4 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition-colors"
+            className="px-4 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800 transition-colors cursor-pointer"
           >
             Got it, Close
           </button>

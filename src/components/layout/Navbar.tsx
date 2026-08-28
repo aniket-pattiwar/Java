@@ -9,6 +9,7 @@ import {
   Menu,
   X,
   Target,
+  Download,
 } from 'lucide-react';
 import { useTeachingMode } from '../../context/TeachingModeContext';
 import { useProgress } from '../../context/ProgressContext';
@@ -167,6 +168,38 @@ export const Navbar: React.FC<NavbarProps> = ({
               <FileText className="w-3.5 h-3.5 text-amber-600" />
               <span>Quick Reference</span>
             </button>
+
+            <button
+              onClick={() => setCurrentView('install-guide')}
+              className={`px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
+                currentView === 'install-guide'
+                  ? 'bg-blue-50 text-blue-800 font-bold border border-blue-200'
+                  : 'hover:bg-slate-50 hover:text-slate-900 text-blue-700'
+              }`}
+            >
+              <Download className="w-3.5 h-3.5 text-blue-600" />
+              <span>Java 17</span>
+              <span className="bg-blue-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
+                PDF
+              </span>
+            </button>
+
+            <button
+              onClick={() => setCurrentView('intellij-guide')}
+              className={`px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
+                currentView === 'intellij-guide'
+                  ? 'bg-indigo-50 text-indigo-800 font-bold border border-indigo-200'
+                  : 'hover:bg-slate-50 hover:text-slate-900 text-indigo-700'
+              }`}
+            >
+              <div className="w-3.5 h-3.5 rounded bg-indigo-600 text-white flex items-center justify-center font-bold text-[8px]">
+                IJ
+              </div>
+              <span>IntelliJ</span>
+              <span className="bg-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
+                PDF
+              </span>
+            </button>
           </nav>
 
           {/* Medium Screen Navigation (1024px - 1280px) Compact Nav */}
@@ -218,7 +251,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                 currentView === 'reference' ? 'bg-slate-100 text-slate-950 font-bold' : 'hover:bg-slate-50'
               }`}
             >
-              Reference
+              Ref
+            </button>
+            <button
+              onClick={() => setCurrentView('install-guide')}
+              className={`px-2 py-1.5 rounded-lg transition-colors flex items-center gap-1 shrink-0 ${
+                currentView === 'install-guide' ? 'bg-blue-50 text-blue-800 font-bold border border-blue-200' : 'hover:bg-slate-50 text-blue-700'
+              }`}
+            >
+              <Download className="w-3 h-3 text-blue-600" />
+              <span>JDK</span>
+            </button>
+            <button
+              onClick={() => setCurrentView('intellij-guide')}
+              className={`px-2 py-1.5 rounded-lg transition-colors flex items-center gap-1 shrink-0 ${
+                currentView === 'intellij-guide' ? 'bg-indigo-50 text-indigo-800 font-bold border border-indigo-200' : 'hover:bg-slate-50 text-indigo-700'
+              }`}
+            >
+              <span>IJ (PDF)</span>
             </button>
           </nav>
 
@@ -320,6 +370,32 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <FileText className="w-4 h-4 text-amber-600" />
               <span>Quick Reference Cheat Sheet</span>
+            </button>
+            <button
+              onClick={() => { setCurrentView('install-guide'); setIsMobileMenuOpen(false); }}
+              className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center justify-between text-blue-700 font-bold"
+            >
+              <div className="flex items-center gap-2">
+                <Download className="w-4 h-4 text-blue-600" />
+                <span>Install Java 17 Guide (PDF)</span>
+              </div>
+              <span className="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                PDF
+              </span>
+            </button>
+            <button
+              onClick={() => { setCurrentView('intellij-guide'); setIsMobileMenuOpen(false); }}
+              className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center justify-between text-indigo-700 font-bold"
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded bg-indigo-600 text-white flex items-center justify-center font-bold text-[9px]">
+                  IJ
+                </div>
+                <span>IntelliJ IDEA Setup (PDF)</span>
+              </div>
+              <span className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                PDF
+              </span>
             </button>
           </div>
         )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Download } from 'lucide-react';
 import { allModules } from '../data';
 import { Sidebar } from '../components/layout/Sidebar';
 import { ConceptCard } from '../components/common/ConceptCard';
@@ -65,6 +65,28 @@ export const ModulePage: React.FC<ModulePageProps> = ({
         <p className="text-sm text-slate-600 max-w-4xl leading-relaxed">
           {currentModule.description}
         </p>
+
+        {/* Setup Guide Callout for Module 1 */}
+        {currentModule.id === 1 && (
+          <div className="mt-3 p-3.5 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                <Download className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="font-bold text-slate-900 text-xs block">Need to install JDK 17 & setup VS Code / IntelliJ / Eclipse?</span>
+                <span className="text-[11px] text-slate-600">Step-by-step Adoptium Temurin 17, JAVA_HOME PowerShell fix, and verification.</span>
+              </div>
+            </div>
+            <button
+              onClick={() => setCurrentView('install-guide')}
+              className="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-2xs cursor-pointer shrink-0"
+            >
+              <span>Open Setup Guide (PDF)</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
 
         {/* Topics Checklist Pills */}
         <div className="pt-2">

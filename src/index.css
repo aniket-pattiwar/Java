@@ -58,6 +58,24 @@
     display: none !important;
   }
   body {
-    background: #FFFFFF;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  header, footer, nav {
+    display: none !important;
+  }
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  section, .whiteboard-box {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border-color: #CBD5E1 !important;
+  }
+  pre, code {
+    font-size: 9pt !important;
   }
 }
