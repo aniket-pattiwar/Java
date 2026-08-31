@@ -275,7 +275,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Toolbar: Teaching Mode & Progress */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0 ms-3">
             {/* Teaching Mode Toggle */}
-            <button
+            {/* <button
               onClick={toggleTeachingMode}
               className={`ms-4 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 ${
                 teachingMode
@@ -284,10 +284,10 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
               title="Toggle Teacher notes, whiteboard guides, and student discussion questions"
             >
-              {/* <Sparkles className="w-3.5 h-3.5 shrink-0" /> */}
-              {/* <span className="hidden sm:inline">Teaching Mode:</span> */}
-              {/* <span>{teachingMode ? 'ON' : 'OFF'}</span> */}
-            </button>
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+              <span className="hidden sm:inline">Teaching Mode:</span>
+              <span>{teachingMode ? 'ON' : 'OFF'}</span>
+            </button> */}
 
             {/* Real Progress Counter */}
             <div className="hidden md:flex items-center gap-2 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg text-xs shrink-0">
