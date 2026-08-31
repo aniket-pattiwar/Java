@@ -11,7 +11,7 @@ import {
   Target,
   Download,
 } from 'lucide-react';
-import { useTeachingMode } from '../../context/TeachingModeContext';
+// import { useTeachingMode } from '../../context/TeachingModeContext';
 import { useProgress } from '../../context/ProgressContext';
 import { allModules } from '../../data';
 
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedModuleId,
   setSelectedModuleId,
 }) => {
-  const { teachingMode, toggleTeachingMode } = useTeachingMode();
+  // const { teachingMode, toggleTeachingMode } = useTeachingMode();
   const { progressPercentage } = useProgress();
   const [isModuleMenuOpen, setIsModuleMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
