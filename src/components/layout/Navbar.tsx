@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  // Sparkles,
+  Sparkles,
   Calendar,
   Layers,
   Terminal,
@@ -11,7 +11,7 @@ import {
   Target,
   Download,
 } from 'lucide-react';
-// import { useTeachingMode } from '../../context/TeachingModeContext';
+import { useTeachingMode } from '../../context/TeachingModeContext';
 import { useProgress } from '../../context/ProgressContext';
 import { allModules } from '../../data';
 
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedModuleId,
   setSelectedModuleId,
 }) => {
-  // const { teachingMode, toggleTeachingMode } = useTeachingMode();
+  const { teachingMode, toggleTeachingMode } = useTeachingMode();
   const { progressPercentage } = useProgress();
   const [isModuleMenuOpen, setIsModuleMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -275,7 +275,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Toolbar: Teaching Mode & Progress */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0 ms-3">
             {/* Teaching Mode Toggle */}
-            {/* <button
+            <button
               onClick={toggleTeachingMode}
               className={`ms-4 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 ${
                 teachingMode
@@ -287,7 +287,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <Sparkles className="w-3.5 h-3.5 shrink-0" />
               <span className="hidden sm:inline">Teaching Mode:</span>
               <span>{teachingMode ? 'ON' : 'OFF'}</span>
-            </button> */}
+            </button>
 
             {/* Real Progress Counter */}
             <div className="hidden md:flex items-center gap-2 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg text-xs shrink-0">
