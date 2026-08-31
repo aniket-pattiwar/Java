@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Sparkles,
+  // Sparkles,
   Calendar,
   Layers,
   Terminal,
@@ -285,8 +285,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Toggle Teacher notes, whiteboard guides, and student discussion questions"
             >
               {/* <Sparkles className="w-3.5 h-3.5 shrink-0" /> */}
-              <span className="hidden sm:inline">Teaching Mode:</span>+
-              <span>{teachingMode ? 'ON' : 'OFF'}</span>
+              {/* <span className="hidden sm:inline">Teaching Mode:</span> */}
+              {/* <span>{teachingMode ? 'ON' : 'OFF'}</span> */}
             </button>
 
             {/* Real Progress Counter */}
