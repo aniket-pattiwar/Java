@@ -67,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-slate-700">
+          <nav className="hidden xl:flex items-center gap-1 text-xs font-semibold text-slate-700 me-4">
             <button
               onClick={() => setCurrentView('home')}
               className={`px-2.5 py-1.5 rounded-lg transition-colors shrink-0 ${
@@ -186,7 +186,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={() => setCurrentView('intellij-guide')}
-              className={`px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
+              className={`me-4 px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
                 currentView === 'intellij-guide'
                   ? 'bg-indigo-50 text-indigo-800 font-bold border border-indigo-200'
                   : 'hover:bg-slate-50 hover:text-slate-900 text-indigo-700'
@@ -196,7 +196,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 IJ
               </div>
               <span>IntelliJ</span>
-              <span className="bg-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
+              <span className="me-4 bg-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
                 PDF
               </span>
             </button>
@@ -273,19 +273,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           </nav>
 
           {/* Right Toolbar: Teaching Mode & Progress */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0 ms-3">
             {/* Teaching Mode Toggle */}
             <button
               onClick={toggleTeachingMode}
-              className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 ${
+              className={`ms-4 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 ${
                 teachingMode
                   ? 'bg-amber-500 hover:bg-amber-600 text-white ring-2 ring-amber-200'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
               title="Toggle Teacher notes, whiteboard guides, and student discussion questions"
             >
-              <Sparkles className="w-3.5 h-3.5 shrink-0" />
-              <span className="hidden sm:inline">Teaching Mode:</span>
+              {/* <Sparkles className="w-3.5 h-3.5 shrink-0" /> */}
+              {/* <span className="hidden sm:inline">Teaching Mode:</span> */}
               <span>{teachingMode ? 'ON' : 'OFF'}</span>
             </button>
 
