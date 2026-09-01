@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  // Sparkles,
+  Sparkles,
   Calendar,
   Layers,
   Terminal,
@@ -11,7 +11,7 @@ import {
   Target,
   Download,
 } from 'lucide-react';
-// import { useTeachingMode } from '../../context/TeachingModeContext';
+import { useTeachingMode } from '../../context/TeachingModeContext';
 import { useProgress } from '../../context/ProgressContext';
 import { allModules } from '../../data';
 
@@ -28,10 +28,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   selectedModuleId,
   setSelectedModuleId,
 }) => {
-  // const { teachingMode, toggleTeachingMode } = useTeachingMode();
+  const { teachingMode, toggleTeachingMode } = useTeachingMode();
   const { progressPercentage } = useProgress();
   const [isModuleMenuOpen, setIsModuleMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Set to true to re-enable the Teaching Mode toggle button in the Navbar
+  const SHOW_TEACHING_MODE = false;
 
 
   const handleSelectModule = (id: number) => {
@@ -274,20 +277,22 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Toolbar: Teaching Mode & Progress */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0 ms-3">
-            {/* Teaching Mode Toggle */}
-            {/* <button
-              onClick={toggleTeachingMode}
-              className={`ms-4 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 ${
-                teachingMode
-                  ? 'bg-amber-500 hover:bg-amber-600 text-white ring-2 ring-amber-200'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
-              title="Toggle Teacher notes, whiteboard guides, and student discussion questions"
-            >
-              <Sparkles className="w-3.5 h-3.5 shrink-0" />
-              <span className="hidden sm:inline">Teaching Mode:</span>
-              <span>{teachingMode ? 'ON' : 'OFF'}</span>
-            </button> */}
+            {/* Teaching Mode Toggle - Set SHOW_TEACHING_MODE to true to re-enable */}
+            {SHOW_TEACHING_MODE && (
+              <button
+                onClick={toggleTeachingMode}
+                className={`ms-4 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all shadow-2xs shrink-0 ${
+                  teachingMode
+                    ? 'bg-amber-500 hover:bg-amber-600 text-white ring-2 ring-amber-200'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
+                title="Toggle Teacher notes, whiteboard guides, and student discussion questions"
+              >
+                <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden sm:inline">Teaching Mode:</span>
+                <span>{teachingMode ? 'ON' : 'OFF'}</span>
+              </button>
+            )}
 
             {/* Real Progress Counter */}
             <div className="hidden md:flex items-center gap-2 bg-slate-50 border border-slate-200 px-2.5 py-1 rounded-lg text-xs shrink-0">

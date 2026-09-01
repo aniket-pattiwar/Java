@@ -13,7 +13,9 @@ export const TeachingTip: React.FC<TeachingTipProps> = ({ note }) => {
   const [showAnswer, setShowAnswer] = useState<boolean>(showAnswersByDefault);
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
 
-  if (!teachingMode) return null;
+  // Temporarily hidden for public deployment (set to true to re-enable)
+  const SHOW_TEACHING_TIPS = false;
+  if (!SHOW_TEACHING_TIPS || !teachingMode) return null;
 
   return (
     <div className="bg-amber-50/70 border border-amber-300/80 rounded-xl overflow-hidden shadow-xs space-y-0 transition-all">

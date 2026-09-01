@@ -13,7 +13,7 @@ const TeachingModeContext = createContext<TeachingModeContextType | undefined>(u
 export const TeachingModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [teachingMode, setTeachingModeState] = useState<boolean>(() => {
     const saved = localStorage.getItem('java_teaching_mode');
-    return saved !== null ? JSON.parse(saved) : true; // Default to TRUE for the instructor
+    return saved !== null ? JSON.parse(saved) : false; // Default to FALSE for public deployment
   });
 
   const [showAnswersByDefault, setShowAnswersByDefault] = useState<boolean>(false);
