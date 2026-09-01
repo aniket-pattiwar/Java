@@ -45,6 +45,20 @@ export const module2Data: ModuleData = {
         `,
         note: 'Unlike C/C++ where int size depends on OS bitness (16/32/64 bit), Java primitive sizes are strictly fixed everywhere!',
       },
+      diagramImages: [
+        {
+          src: '/images/java_primitive_data_types_memory.jpg',
+          alt: 'The 8 Primitive Data Types in Java: Memory Layout & Defaults',
+          title: '1. The 8 Primitive Data Types: Memory Layout & Defaults',
+          caption: 'Primitive memory footprint: Integers (byte, short, int, long), Floating-Point (float, double), Character (char), and Boolean. Values are stored directly on the Stack.',
+        },
+        {
+          src: '/images/java_non_primitive_data_types.jpg',
+          alt: 'Non-Primitive (Reference) Data Types in Java: Memory & Structure',
+          title: '2. Non-Primitive (Reference) Data Types: Memory & Structure',
+          caption: 'Non-primitive types (Strings, Arrays, Classes & Objects, Interfaces & Enums): Stored in Heap memory while the reference/pointer lives on the Stack. Default value is null.',
+        },
+      ],
       diagramImage: {
         src: '/images/java_primitive_data_types_memory.jpg',
         alt: 'The 8 Primitive Data Types in Java: Memory Layout & Defaults',

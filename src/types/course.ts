@@ -56,7 +56,14 @@ export interface Concept {
     src: string;
     alt: string;
     caption?: string;
+    title?: string;
   };
+  diagramImages?: {
+    src: string;
+    alt: string;
+    caption?: string;
+    title?: string;
+  }[];
   javaExample: string;
   expectedOutput: string;
   tryItCode?: string;

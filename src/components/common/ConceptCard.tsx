@@ -116,32 +116,40 @@ export const ConceptCard: React.FC<ConceptCardProps> = ({ concept }) => {
       {/* Teaching Mode Tip (for the instructor) */}
       <TeachingTip note={concept.teachingMode} conceptTitle={concept.title} />
 
-      {/* Architectural Diagram Image (if available) */}
-      {concept.diagramImage && (
-        <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden shadow-xs space-y-2">
+      {/* Architectural Diagram Image(s) (if available) */}
+      {(
+        concept.diagramImages && concept.diagramImages.length > 0
+          ? concept.diagramImages
+          : concept.diagramImage
+          ? [concept.diagramImage]
+          : []
+      ).map((img, idx) => (
+        <div key={idx} className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden shadow-xs space-y-2">
           <div className="bg-white px-4 py-2.5 border-b border-slate-200 flex items-center justify-between">
             <span className="text-xs font-bold text-slate-800 flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-              Architectural Concept Diagram
+              {img.title || (img.alt.toLowerCase().includes('non-primitive')
+                ? 'Non-Primitive (Reference) Data Types Architecture'
+                : 'Architectural Concept Diagram')}
             </span>
             <span className="text-[10px] text-slate-500 font-mono">High Resolution · Click to Zoom</span>
           </div>
           <div className="p-3 bg-white flex flex-col items-center">
             <img
-              src={concept.diagramImage.src}
-              alt={concept.diagramImage.alt}
+              src={img.src}
+              alt={img.alt}
               className="max-h-[380px] w-auto rounded-lg object-contain border border-slate-200 cursor-pointer hover:opacity-95 transition-opacity"
-              onClick={() => window.open(concept.diagramImage?.src, '_blank')}
+              onClick={() => window.open(img.src, '_blank')}
               title="Click to view full size in new tab"
             />
-            {concept.diagramImage.caption && (
+            {img.caption && (
               <p className="text-xs text-slate-600 mt-2.5 text-center px-4 font-medium leading-relaxed">
-                ℹ️ {concept.diagramImage.caption}
+                ℹ️ {img.caption}
               </p>
             )}
           </div>
         </div>
-      )}
+      ))}
 
       {/* Custom Visualizer OR Visual Diagram */}
       {concept.customVisualizer ? (

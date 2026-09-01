@@ -65,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   STT 2026
                 </span>
               </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">Modules 1–7 · 20 Hours</p>
+              {/* <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">Modules 1–7 · 20 Hours</p> */}
             </div>
           </div>
 
@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               Home
             </button>
-
+{/* 
             <button
               onClick={() => setCurrentView('schedule')}
               className={`px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
@@ -92,7 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Calendar className="w-3.5 h-3.5 text-blue-600" />
               <span>5-Day Plan</span>
-            </button>
+            </button> */}
 
             {/* Modules Dropdown */}
             <div className="relative">

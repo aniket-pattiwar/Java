@@ -16,8 +16,8 @@ export const ReferencePage: React.FC<ReferencePageProps> = ({ setCurrentView }) 
       <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs flex flex-wrap items-center justify-between gap-4">
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-xs font-bold text-amber-700 uppercase tracking-wider">
-            <FileText className="w-4 h-4" />
-            <span>Instructor 1-Page Cheat Sheet</span>
+            {/* <FileText className="w-4 h-4" /> */}
+            {/* <span>Instructor 1-Page Cheat Sheet</span> */}
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
             Java Quick Reference & Whiteboard Aid

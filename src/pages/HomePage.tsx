@@ -2,7 +2,6 @@ import React from 'react';
 import {
   ArrowRight,
   Calendar,
-  Sparkles,
   FileText,
   Clock,
   Download,
@@ -243,7 +242,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentView, setSelectedM
       </section>
 
       {/* Teaching Flow Feature Matrix */}
-      <section className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6">
+      {/* <section className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="max-w-2xl space-y-2">
           <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-4 h-4" />
@@ -290,7 +289,7 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentView, setSelectedM
             <p className="text-slate-300">1-click code copying and projector-ready steps for student hands-on coding.</p>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
