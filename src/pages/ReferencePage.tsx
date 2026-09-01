@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, Printer, Download } from 'lucide-react';
+import { Printer, Download } from 'lucide-react';
 
 interface ReferencePageProps {
   setCurrentView?: (view: string) => void;
