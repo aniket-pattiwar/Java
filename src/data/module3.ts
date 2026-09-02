@@ -246,11 +246,66 @@ Verified Balance: $750.0`,
       },
       quizzes: [
         {
-          id: 'q3-2',
-          question: 'Which OOP pillar focuses on restricting direct access to object fields and exposing controlled methods?',
-          options: ['Inheritance', 'Encapsulation', 'Polymorphism', 'Compilation'],
+          id: 'q3-pillar-encapsulation',
+          question: 'Which OOP pillar protects internal object state by declaring fields private and restricting mutations through getters and setters?',
+          codeSnippet: `public class Student {
+    private double gpa; // Protected from unauthorized modification
+
+    public void setGpa(double gpa) {
+        if (gpa >= 0.0 && gpa <= 4.0) this.gpa = gpa;
+    }
+}`,
+          options: ['Abstraction', 'Encapsulation', 'Inheritance', 'Polymorphism'],
           correctAnswerIndex: 1,
-          explanation: 'Encapsulation bundles data with accessor/mutator methods and marks fields private to enforce valid internal state.',
+          explanation: 'Encapsulation bundles data (fields) and methods together while hiding raw internal state with private access to prevent corruption and enforce invariants.',
+        },
+        {
+          id: 'q3-pillar-abstraction',
+          question: 'Which OOP pillar focuses on exposing only essential operations to the caller while completely hiding complex underlying implementation details?',
+          codeSnippet: `// The user calls send() without needing to understand SMTP socket protocols
+interface EmailService {
+    void send(String to, String message);
+}`,
+          options: ['Encapsulation', 'Abstraction', 'Inheritance', 'Compilation'],
+          correctAnswerIndex: 1,
+          explanation: 'Abstraction hides internal algorithmic complexity behind abstract classes or interfaces, allowing callers to interact with a clean, high-level contract.',
+        },
+        {
+          id: 'q3-pillar-inheritance',
+          question: 'Which OOP pillar promotes code reuse by enabling a child class to acquire fields and methods of an existing parent class via the "extends" keyword (IS-A relationship)?',
+          codeSnippet: `class Vehicle {
+    int wheels = 4;
+    void honk() { System.out.println("Beep!"); }
+}
+class Car extends Vehicle {
+    // Automatically inherits wheels and honk() without code duplication
+}`,
+          options: ['Inheritance', 'Abstraction', 'Encapsulation', 'Polymorphism'],
+          correctAnswerIndex: 0,
+          explanation: 'Inheritance models hierarchical IS-A relationships, allowing subclasses to inherit attributes and methods from a superclass and avoid duplicate code.',
+        },
+        {
+          id: 'q3-pillar-polymorphism',
+          question: 'Which OOP pillar enables a single method call to execute different behaviors at runtime depending on the actual underlying object type on the Heap?',
+          codeSnippet: `Animal a1 = new Dog(); // a1.makeSound() -> "Bark"
+Animal a2 = new Cat(); // a2.makeSound() -> "Meow"
+a1.makeSound();
+a2.makeSound();`,
+          options: ['Encapsulation', 'Data Hiding', 'Polymorphism', 'Type Coercion'],
+          correctAnswerIndex: 2,
+          explanation: 'Polymorphism (meaning "many forms") allows dynamic runtime method dispatch, where a common parent reference executes the appropriate subclass implementation.',
+        },
+        {
+          id: 'q3-pillar-overview',
+          question: 'Which combination correctly pairs each of the 4 OOP pillars with its primary architectural objective in Java software design?',
+          options: [
+            'Encapsulation -> Data Protection; Abstraction -> Complexity Hiding; Inheritance -> Code Reuse; Polymorphism -> Dynamic Runtime Flexibility',
+            'Encapsulation -> Code Reuse; Abstraction -> Data Protection; Inheritance -> Dynamic Behavior; Polymorphism -> Complexity Hiding',
+            'Encapsulation -> Fast Execution; Abstraction -> Memory Allocation; Inheritance -> Multi-threading; Polymorphism -> Garbage Collection',
+            'Encapsulation -> Compilation; Abstraction -> Linking; Inheritance -> Loading; Polymorphism -> Bytecode Verification',
+          ],
+          correctAnswerIndex: 0,
+          explanation: 'Encapsulation guards data validity; Abstraction hides complexity through clean contracts; Inheritance shares common functionality; and Polymorphism provides extensible dynamic behavior.',
         },
       ],
     },

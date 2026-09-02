@@ -44,6 +44,12 @@ export const module4Data: ModuleData = {
         `,
         note: 'When s2 = s1 executes, the reference memory address in the stack is copied. No new object is created in the heap.',
       },
+      diagramImage: {
+        src: '/images/java_stack_vs_heap_memory.jpg',
+        alt: 'Java Memory Architecture: Stack Memory vs Heap Memory Diagram',
+        title: 'Stack Memory vs Heap Memory Architecture',
+        caption: 'Stack vs Heap layout: Stack holds method call frames (LIFO) with local primitive variables and reference variables (s1 and s2 holding address @0x3A21). Heap holds dynamic objects (Student Object with name="Rahul", age=20). Reference assignment s2 = s1 copies the address pointer, so both point to the same shared Heap instance.',
+      },
       javaExample: `class Student {
     String name;
     int age;
@@ -146,11 +152,20 @@ public class Main {
         `,
         note: 'Inside a method, reassigning param = new Student() will NEVER change the caller\'s reference outside the method!',
       },
-      diagramImage: {
-        src: '/images/java_pass_by_value_diagram.jpg',
-        alt: 'Java Pass-by-Value Memory Mechanics Diagram',
-        caption: 'Stack & Heap trace: Primitives pass a copy of data (x = 10 -> 20 leaves original unchanged); Object references pass a copy of the pointer address (@0x3A21), mutating fields updates the shared heap object.',
-      },
+      diagramImages: [
+        {
+          src: '/images/java_pass_by_value_references.jpg',
+          alt: 'Java is Strictly Pass-by-Value: Primitive vs Object Reference Passing Diagram',
+          title: 'Java Pass-by-Value & Reference Passing Mechanics',
+          caption: 'Three key rules: 1) Primitive passing copies raw bits (original x stays 10). 2) Object reference passing copies the pointer address (@0x100), so modifying s.name changes the shared heap object. 3) Reassigning the parameter s = new Student() only updates the local frame pointer (@0x200), leaving the caller original reference s1 completely untouched!',
+        },
+        {
+          src: '/images/java_pass_by_value_diagram.jpg',
+          alt: 'Java Pass-by-Value Stack Frame & Heap Lifecycle Diagram',
+          title: 'Stack Frames & Heap Reference Mutation Lifecycle',
+          caption: 'Stack & Heap trace: Primitives pass a copy of data (x = 10 -> 20 leaves original unchanged); Object references pass a copy of the pointer address (@0x3A21), mutating fields updates the shared heap object.',
+        },
+      ],
       javaExample: `class Student {
     String name;
     Student(String n) { this.name = n; }
