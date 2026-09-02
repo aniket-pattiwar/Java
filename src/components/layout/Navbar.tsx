@@ -10,6 +10,7 @@ import {
   X,
   Target,
   Download,
+  Award,
 } from 'lucide-react';
 import { useTeachingMode } from '../../context/TeachingModeContext';
 import { useProgress } from '../../context/ProgressContext';
@@ -61,9 +62,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="font-extrabold text-slate-900 text-sm sm:text-base tracking-tight group-hover:text-blue-600 transition-colors">
                   Mastering Java
                 </span>
-                <span className="bg-amber-100 text-amber-900 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-amber-200">
+                {/* <span className="bg-amber-100 text-amber-900 text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded-full border border-amber-200">
                   STT 2026
-                </span>
+                </span> */}
               </div>
               {/* <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">Modules 1–7 · 20 Hours</p> */}
             </div>
@@ -189,7 +190,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             <button
               onClick={() => setCurrentView('intellij-guide')}
-              className={`me-4 px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
+              className={`px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
                 currentView === 'intellij-guide'
                   ? 'bg-indigo-50 text-indigo-800 font-bold border border-indigo-200'
                   : 'hover:bg-slate-50 hover:text-slate-900 text-indigo-700'
@@ -199,7 +200,22 @@ export const Navbar: React.FC<NavbarProps> = ({
                 IJ
               </div>
               <span>IntelliJ</span>
-              <span className="me-4 bg-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
+              <span className="bg-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
+                PDF
+              </span>
+            </button>
+
+            <button
+              onClick={() => setCurrentView('assignments')}
+              className={`me-4 px-2.5 py-1.5 rounded-lg transition-colors flex items-center gap-1.5 shrink-0 ${
+                currentView === 'assignments'
+                  ? 'bg-amber-50 text-amber-900 font-bold border border-amber-300'
+                  : 'hover:bg-slate-50 hover:text-slate-900 text-amber-700'
+              }`}
+            >
+              <Award className="w-3.5 h-3.5 text-amber-600" />
+              <span>Assignments</span>
+              <span className="me-4 bg-amber-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full uppercase">
                 PDF
               </span>
             </button>
@@ -272,6 +288,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <span>IJ (PDF)</span>
+            </button>
+            <button
+              onClick={() => setCurrentView('assignments')}
+              className={`px-2 py-1.5 rounded-lg transition-colors flex items-center gap-1 shrink-0 ${
+                currentView === 'assignments' ? 'bg-amber-50 text-amber-900 font-bold border border-amber-300' : 'hover:bg-slate-50 text-amber-700'
+              }`}
+            >
+              <Award className="w-3 h-3 text-amber-600" />
+              <span>Assign</span>
             </button>
           </nav>
 
@@ -399,6 +424,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span>IntelliJ IDEA Setup (PDF)</span>
               </div>
               <span className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                PDF
+              </span>
+            </button>
+            <button
+              onClick={() => { setCurrentView('assignments'); setIsMobileMenuOpen(false); }}
+              className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-center justify-between text-amber-800 font-bold"
+            >
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-amber-600" />
+                <span>Course Assignments (3 PDFs)</span>
+              </div>
+              <span className="bg-amber-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
                 PDF
               </span>
             </button>

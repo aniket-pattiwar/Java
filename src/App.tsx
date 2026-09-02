@@ -11,6 +11,7 @@ import { ReferencePage } from './pages/ReferencePage';
 import { ChallengesPage } from './pages/ChallengesPage';
 import { InstallGuidePage } from './pages/InstallGuidePage';
 import { IntelliJGuidePage } from './pages/IntelliJGuidePage';
+import { AssignmentsPage } from './pages/AssignmentsPage';
 import { totalConceptsCount } from './data';
 
 export const App: React.FC = () => {
@@ -67,6 +68,8 @@ export const App: React.FC = () => {
         return <InstallGuidePage setCurrentView={setCurrentView} />;
       case 'intellij-guide':
         return <IntelliJGuidePage setCurrentView={setCurrentView} />;
+      case 'assignments':
+        return <AssignmentsPage setCurrentView={setCurrentView} />;
       default:
         return (
           <HomePage

@@ -14,13 +14,12 @@ export const Footer: React.FC = () => {
           <span className="font-bold text-slate-800">
             Mastering Programming using Java
           </span>
-          <span className="text-slate-400">· Short-Term Training (STT 2026)</span>
+     
         </div>
-        <div className="text-slate-400">© 2026 C-DAC Patna. All Rights Reserved.</div>
-    
+        <div className="text-slate-400">© 2026 C-DAC Patna. All Rights Reserved.</div>    
         <div className="flex items-center gap-4">
           <span className="text-slate-600">
-            20 Hours Total · Modules 1–7
+          Modules 1-7
           </span>
 
           <button
