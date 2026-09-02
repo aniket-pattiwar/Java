@@ -52,7 +52,9 @@ export const module3Data: ModuleData = {
         alt: 'Java Class Blueprint vs Living Heap Objects Diagram',
         caption: 'Blueprint vs Instances: Class Car in code acts as the blueprint. Calling new Car() allocates separate memory in the Heap for car1 (Red Civic) and car2 (Black Fortuner) with independent state.',
       },
-      javaExample: `// Class definition (Blueprint)
+      javaExample: `import java.util.Scanner;
+
+// Class definition (Blueprint)
 class Car {
     String model;
     String color;
@@ -70,21 +72,47 @@ class Car {
 
 public class Main {
     public static void main(String[] args) {
-        Car car1 = new Car();
-        car1.model = "Honda Civic";
-        car1.color = "Red";
-        car1.start();
-        car1.accelerate(40);
+        Scanner scanner = new Scanner(System.in);
 
+        // First Car Instance (user input)
+        Car car1 = new Car();
+        System.out.print("Enter model for Car 1: ");
+        car1.model = scanner.nextLine();
+        System.out.print("Enter color for Car 1: ");
+        car1.color = scanner.nextLine();
+        System.out.print("Enter speed increase for Car 1: ");
+        int speed1 = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        car1.start();
+        car1.accelerate(speed1);
+
+        System.out.println();
+
+        // Second Car Instance (user input)
         Car car2 = new Car();
-        car2.model = "Toyota Fortuner";
-        car2.color = "Black";
+        System.out.print("Enter model for Car 2: ");
+        car2.model = scanner.nextLine();
+        System.out.print("Enter color for Car 2: ");
+        car2.color = scanner.nextLine();
+        System.out.print("Enter speed increase for Car 2: ");
+        int speed2 = scanner.nextInt();
+
         car2.start();
-        car2.accelerate(70);
+        car2.accelerate(speed2);
+
+        scanner.close();
     }
 }`,
-      expectedOutput: `Honda Civic (Red) engine started.
+      expectedOutput: `Enter model for Car 1: Honda Civic
+Enter color for Car 1: Red
+Enter speed increase for Car 1: 40
+Honda Civic (Red) engine started.
 Honda Civic accelerated to 40 km/h
+
+Enter model for Car 2: Toyota Fortuner
+Enter color for Car 2: Black
+Enter speed increase for Car 2: 70
 Toyota Fortuner (Black) engine started.
 Toyota Fortuner accelerated to 70 km/h`,
       tryItCode: `class Student {

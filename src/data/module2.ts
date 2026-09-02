@@ -215,10 +215,16 @@ Pre-increment: 7`,
         `,
         note: 'while checks condition before entering; do-while guarantees at least ONE execution before testing condition.',
       },
-      javaExample: `public class FlowControlDemo {
+      javaExample: `import java.util.Scanner;
+
+public class FlowControlDemo {
     public static void main(String[] args) {
-        // 1. Switch Statement
-        int dayOfWeek = 3;
+        Scanner scanner = new Scanner(System.in);
+
+        // 1. Switch Statement with User Input
+        System.out.print("Enter day number (1-7): ");
+        int dayOfWeek = scanner.nextInt();
+
         String dayName;
         switch (dayOfWeek) {
             case 1: dayName = "Monday"; break;
@@ -230,16 +236,35 @@ Pre-increment: 7`,
         }
         System.out.println("Day " + dayOfWeek + " is " + dayName);
 
-        // 2. Enhanced For-Each Loop
-        int[] scores = {88, 92, 79, 95};
+        // 2. Enhanced For-Each Loop with User Input
+        System.out.print("\nEnter number of test scores: ");
+        int count = scanner.nextInt();
+        int[] scores = new int[count];
+
+        for (int i = 0; i < count; i++) {
+            System.out.print("Enter score " + (i + 1) + ": ");
+            scores[i] = scanner.nextInt();
+        }
+
         int total = 0;
         for (int s : scores) {
             total += s;
         }
-        System.out.println("Average Score: " + (total / (double) scores.length));
+
+        double average = (count > 0) ? (total / (double) scores.length) : 0.0;
+        System.out.println("Average Score: " + average);
+
+        scanner.close();
     }
 }`,
-      expectedOutput: `Day 3 is Wednesday
+      expectedOutput: `Enter day number (1-7): 3
+Day 3 is Wednesday
+
+Enter number of test scores: 4
+Enter score 1: 88
+Enter score 2: 92
+Enter score 3: 79
+Enter score 4: 95
 Average Score: 88.5`,
       tryItCode: `public class LoopPractice {
     public static void main(String[] args) {
@@ -263,11 +288,64 @@ Average Score: 88.5`,
       },
       quizzes: [
         {
-          id: 'q2-4',
-          question: 'Which loop guarantees that the body of the loop executes at least once?',
-          options: ['for loop', 'while loop', 'do-while loop', 'enhanced for-each loop'],
-          correctAnswerIndex: 2,
-          explanation: 'do-while checks its test condition at the bottom after executing the loop body once.',
+          id: 'q2-for',
+          question: 'What is the exact output of the following for loop?',
+          codeSnippet: `for (int i = 1; i <= 5; i += 2) {
+    System.out.print(i + " ");
+}`,
+          options: ['1 2 3 4 5', '1 3 5 ', '1 3 5 7 ', '2 4 '],
+          correctAnswerIndex: 1,
+          explanation: 'The loop starts at i = 1, increments by 2 each iteration (i += 2), and runs while i <= 5. Thus, it prints "1 3 5 ".',
+        },
+        {
+          id: 'q2-while',
+          question: 'What is the final value of count printed after the while loop terminates?',
+          codeSnippet: `int count = 5;
+while (count > 2) {
+    count--;
+}
+System.out.println(count);`,
+          options: ['3', '2', '1', '0'],
+          correctAnswerIndex: 1,
+          explanation: 'When count is 3, the condition (3 > 2) is true, decrementing count to 2. At the next check, (2 > 2) evaluates to false, terminating the loop and printing 2.',
+        },
+        {
+          id: 'q2-dowhile',
+          question: 'How many times will the body of this do-while loop execute, even though x < 5 is initially false?',
+          codeSnippet: `int x = 10;
+do {
+    System.out.print(x + " ");
+    x++;
+} while (x < 5);`,
+          options: ['0 times', '1 time (prints: 10 )', '5 times', 'Infinite loop'],
+          correctAnswerIndex: 1,
+          explanation: 'do-while is an exit-controlled loop that executes the body first before evaluating the condition, guaranteeing at least one execution.',
+        },
+        {
+          id: 'q2-switch',
+          question: 'What will be printed by the following switch statement due to missing break statements (fall-through)?',
+          codeSnippet: `int level = 2;
+switch (level) {
+    case 1: System.out.print("Gold ");
+    case 2: System.out.print("Silver ");
+    case 3: System.out.print("Bronze ");
+    default: System.out.print("Standard");
+}`,
+          options: ['Silver', 'Silver Bronze Standard', 'Silver Bronze', 'Gold Silver Bronze Standard'],
+          correctAnswerIndex: 1,
+          explanation: 'Case 2 matches and prints "Silver ". Because there are no break statements, execution falls through case 3 and the default block, printing "Silver Bronze Standard".',
+        },
+        {
+          id: 'q2-foreach',
+          question: 'What is the output when attempting to modify array elements inside an enhanced for-each loop?',
+          codeSnippet: `int[] numbers = {10, 20, 30};
+for (int n : numbers) {
+    n = n * 2;
+}
+System.out.println(numbers[0] + " " + numbers[1] + " " + numbers[2]);`,
+          options: ['20 40 60', '10 20 30', 'Compilation error', 'IndexOutOfBoundsException'],
+          correctAnswerIndex: 1,
+          explanation: 'In an enhanced for-each loop, the iteration variable n holds a copy of each element value. Modifying n does not alter the actual elements in the array.',
         },
       ],
     },

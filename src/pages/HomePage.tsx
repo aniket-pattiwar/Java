@@ -1,9 +1,7 @@
 import React from 'react';
 import {
   ArrowRight,
-  Calendar,
   FileText,
-  Clock,
   Download,
   Award,
 } from 'lucide-react';
@@ -15,8 +13,6 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ setCurrentView, setSelectedModuleId }) => {
-
-
   const handleStartDay1 = () => {
     setSelectedModuleId(1);
     setCurrentView('module');
@@ -26,49 +22,6 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentView, setSelectedM
     setSelectedModuleId(id);
     setCurrentView('module');
   };
-
-  const dayFlows = [
-    {
-      day: 1,
-      title: 'DAY 1 — Java Fundamentals & Flow',
-      modules: 'Modules 1 & 2',
-      topics: 'JDK/JRE/JVM · Bytecode · main() · Primitives · Operators · if/switch · Loops',
-      hours: '4 Hours',
-      color: 'border-blue-300 bg-blue-50/40 text-blue-900',
-    },
-    {
-      day: 2,
-      title: 'DAY 2 — OOP Foundations',
-      modules: 'Module 3',
-      topics: 'Real World Modeling · Class vs Object · State & Behavior · 4 Pillars · Encapsulation',
-      hours: '4 Hours',
-      color: 'border-indigo-300 bg-indigo-50/40 text-indigo-900',
-    },
-    {
-      day: 3,
-      title: 'DAY 3 — Constructors & Memory Mechanics',
-      modules: 'Module 4',
-      topics: 'Constructors · Stack vs Heap Visualizer · Reference Sharing · Pass-by-Value',
-      hours: '4 Hours',
-      color: 'border-purple-300 bg-purple-50/40 text-purple-900',
-    },
-    {
-      day: 4,
-      title: 'DAY 4 — Inheritance & Polymorphism',
-      modules: 'Module 5',
-      topics: 'Inheritance Trees · Dynamic Dispatch · Overloading/Overriding · Casting · UML Relations',
-      hours: '4 Hours',
-      color: 'border-emerald-300 bg-emerald-50/40 text-emerald-900',
-    },
-    {
-      day: 5,
-      title: 'DAY 5 — Abstraction, Interfaces & Packages',
-      modules: 'Modules 6 & 7',
-      topics: 'Abstract Classes · Interfaces · Object Class · final · Access Matrix · Chaining',
-      hours: '4 Hours',
-      color: 'border-amber-300 bg-amber-50/40 text-amber-900',
-    },
-  ];
 
   return (
     <div className="space-y-12 pb-12 animate-in fade-in duration-150">
