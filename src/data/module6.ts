@@ -28,39 +28,55 @@ export const module6Data: ModuleData = {
       category: 'Abstraction',
       customVisualizer: 'abstract-interface',
       visualExplanation: {
-        title: 'Multiple Interface Implementation & Class Hierarchy',
+        title: 'Abstract Class Extension & Multiple Interface Implementation',
         diagramText: `
-    <<interface>>             <<interface>>
-     Printable                   Savable
-         │                          │
-         │ void print()             │ void save()
-         │                          │
-         └───────────┬──────────────┘
-                     │ implements both
-                     ▼
-             ┌───────────────┐
-             │    Report     │
-             ├───────────────┤
-             │ print() {...} │
-             │ save()  {...} │
-             └───────────────┘
+       ┌───────────────────────────────────────┐
+       │         <<abstract>> Report           │
+       ├───────────────────────────────────────┤
+       │ String title                          │
+       │ Report(String title)                  │
+       │ showHeader() [Concrete]               │
+       │ calculateTax() [Abstract]             │
+       └──────────────────┬────────────────────┘
+                          │ extends
+                          ▼
+<<interface>>     ┌────────────────┐     <<interface>>
+  Printable  ───► │FinancialReport │ ◄────  Savable
+ (void print())   └────────────────┘    (void save())
         `,
-        note: 'Java does not allow multiple class inheritance (extends A, B) to prevent the Diamond Problem, but allows implementing multiple interfaces (implements A, B).',
+        note: 'Java does not allow multiple class inheritance (extends A, B) to prevent the Diamond Problem, but allows extending 1 abstract class while implementing multiple interfaces (implements A, B).',
       },
-      javaExample: `// 1. Multiple Interfaces
-interface Printable {
-    void print();
+      javaExample: `// 1. ABSTRACT CLASS: Common identity aur state (Variables + Constructor)
+abstract class Report {
+    String title;
+
+    Report(String title) {
+        this.title = title;
+    }
+
+    // Concrete method (har report ke paas ready-made hoga)
+    void showHeader() {
+        System.out.println("=== REPORT: " + title + " ===");
+    }
+
+    // Abstract method (child ko khud implement karna padega)
+    abstract void calculateTax();
 }
 
-interface Savable {
-    void save();
-}
+// 2. INTERFACES: Extra capabilities (Rules)
+interface Printable { void print(); }
+interface Savable { void save(); }
 
-class FinancialReport implements Printable, Savable {
-    private String title;
+// 3. CHILD CLASS: 1 Abstract class ko extend kiya + multiple interfaces implement kiye
+class FinancialReport extends Report implements Printable, Savable {
 
     FinancialReport(String title) {
-        this.title = title;
+        super(title); // Abstract class ka constructor call hua
+    }
+
+    @Override
+    void calculateTax() {
+        System.out.println("Tax calculated for " + title);
     }
 
     @Override
@@ -70,50 +86,61 @@ class FinancialReport implements Printable, Savable {
 
     @Override
     public void save() {
-        System.out.println("Saving: " + title + " to database.");
+        System.out.println("Saving: " + title);
     }
 }
 
 public class Main {
     public static void main(String[] args) {
-        FinancialReport r = new FinancialReport("Q1 2026 Audit");
-        r.print();
-        r.save();
-
-        // Interface reference polymorphism
-        Printable p = r;
-        p.print();
+        FinancialReport report = new FinancialReport("Q1 2026 Audit");
+        report.showHeader();
+        report.calculateTax();
+        report.print();
+        report.save();
     }
 }`,
-      expectedOutput: `Printing: Q1 2026 Audit
-Saving: Q1 2026 Audit to database.
-Printing: Q1 2026 Audit`,
-      tryItCode: `abstract class Shape {
-    abstract double area();
+      expectedOutput: `=== REPORT: Q1 2026 Audit ===
+Tax calculated for Q1 2026 Audit
+Printing: Q1 2026 Audit
+Saving: Q1 2026 Audit`,
+      tryItCode: `abstract class Report {
+    String title;
+    Report(String title) { this.title = title; }
+    void showHeader() { System.out.println("=== REPORT: " + title + " ==="); }
+    abstract void calculateTax();
 }
 
-class Circle extends Shape {
-    double radius;
-    Circle(double r) { this.radius = r; }
+interface Printable { void print(); }
+interface Savable { void save(); }
+
+class FinancialReport extends Report implements Printable, Savable {
+    FinancialReport(String title) { super(title); }
     @Override
-    double area() { return Math.PI * radius * radius; }
+    void calculateTax() { System.out.println("Tax calculated for " + title); }
+    @Override
+    public void print() { System.out.println("Printing: " + title); }
+    @Override
+    public void save() { System.out.println("Saving: " + title); }
 }
 
 public class Main {
     public static void main(String[] args) {
-        Shape s = new Circle(5.0);
-        System.out.println("Circle Area: " + String.format("%.2f", s.area()));
+        FinancialReport report = new FinancialReport("Q1 2026 Audit");
+        report.showHeader();
+        report.calculateTax();
+        report.print();
+        report.save();
     }
 }`,
       teachingMode: {
         explain2Min: [
-          'Abstract Class: Can have both abstract (unimplemented) and concrete (implemented) methods, instance variables, and constructors. Used for code reuse among closely related classes (IS-A).',
-          'Interface: Pure contract of what a class CAN-DO. All fields are public static final by default. Methods are public abstract by default.',
-          'Why multiple interfaces? Because an interface has no state/fields to cause ambiguity or diamond collisions.',
+          'Abstract Class: Can have both abstract (unimplemented) and concrete (implemented) methods, instance variables, and constructors. Used for common identity & state (IS-A).',
+          'Interface: Pure contract of extra capabilities (CAN-DO). All methods in interfaces are public abstract by default.',
+          'Child Class: Can extend ONE abstract class (super constructor call) + implement MULTIPLE interfaces simultaneously.',
         ],
         drawTips:
-          'Draw Shape <<abstract>> at top with dashed border for abstract area(). Draw Circle below with solid line implementing area(). Then draw two interface clouds plugging into a class.',
-        codeHighlight: 'Emphasize that methods implementing interface contracts MUST be declared "public".',
+          'Draw Report <<abstract>> at top with title & showHeader(). Below draw FinancialReport extending Report and implementing Printable & Savable interface contracts.',
+        codeHighlight: 'Emphasize "extends Report implements Printable, Savable" and super(title) calling the abstract class constructor.',
         studentQuestion: 'Can we create an object of an abstract class using "new AbstractClass()"?',
         studentAnswer: 'No! Abstract classes cannot be directly instantiated with "new" because they may contain incomplete abstract methods with no body. You must instantiate a concrete subclass.',
       },
